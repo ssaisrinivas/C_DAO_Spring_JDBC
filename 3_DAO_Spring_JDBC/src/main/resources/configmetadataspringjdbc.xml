@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-model href=""?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+
+	xmlns:p="http://www.springframework.org/schema/p"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+
+  http://www.springframework.org/schema/context
+
+  http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+<context:component-scan base-package="com.sai.spring.springjdbc"></context:component-scan>
+
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/springjdbc"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+    
+    <bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" autowire="byName"/>
+
+<!-- 
+<bean name="employeeDao" class="com.sai.spring.springjdbc.dao.EmployeeSpringJdbcDaoImpl"/>
+
+<bean name="employeeSpringJdbcDao" class="com.sai.spring.springjdbc.dao.EmployeeSpringJdbcDaoImpl"  autowire="byName"/>
+
+<bean name="employeeBusiness" class="com.sai.spring.springjdbc.business.EmployeeBusinessImpl" autowire="byName" /> -->
+
+</beans>
