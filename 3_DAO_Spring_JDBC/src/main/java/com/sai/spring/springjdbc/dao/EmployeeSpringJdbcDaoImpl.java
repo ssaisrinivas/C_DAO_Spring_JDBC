@@ -15,7 +15,7 @@ import com.sai.spring.springjdbc.model.Employee;
 public class EmployeeSpringJdbcDaoImpl implements EmployeeDao {
 
 	private EmployeeRowMapper rowMapper;
-	
+
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
@@ -32,10 +32,8 @@ public class EmployeeSpringJdbcDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public int insertEmployee(Employee employee) throws ClassNotFoundException, SQLException{
-		Employee employees = null ;
-		rowMapper = new EmployeeRowMapper();
-		
+	public int insertEmployee(Employee employee) throws ClassNotFoundException, SQLException {
+
 		String insertSql = "INSERT INTO employee (id, name, exp) VALUES (?, ?, ?)";
 		int value = jdbcTemplate.update(insertSql, employee.getId(), employee.getName(), employee.getExperiance());
 		return value;
@@ -43,25 +41,21 @@ public class EmployeeSpringJdbcDaoImpl implements EmployeeDao {
 
 	@Override
 	public Employee getEmployeeById(String id) {
-		Employee employees = null ;
+		Employee employees = null;
 		rowMapper = new EmployeeRowMapper();
 
 		try {
-		employees = jdbcTemplate.queryForObject("select * from employee where id = ?", rowMapper, id);
-		}
-		catch(EmptyResultDataAccessException e) {
-		
+			employees = jdbcTemplate.queryForObject("select * from employee where id = ?", rowMapper, id);
+		} catch (EmptyResultDataAccessException e) {
+
 			e.printStackTrace();
 		}
 		return employees;
-		
-		}
-		
+
+	}
 
 	@Override
 	public int updateEmployeeById(String empId) {
-
-		rowMapper = new EmployeeRowMapper();
 
 		String sql = "update employee set name = 'salim' where id = ?";
 
@@ -71,9 +65,7 @@ public class EmployeeSpringJdbcDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public int  deleteEmployeeById(String empId) {
-
-		rowMapper = new EmployeeRowMapper();
+	public int deleteEmployeeById(String empId) {
 
 		String sql = "DELETE FROM employee WHERE id = ?";
 		int value = jdbcTemplate.update(sql, empId);

@@ -30,17 +30,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		Class.forName(driver);
 
 		Connection con = null;
+		
 		try {
-			con = DriverManager.getConnection(url, username, password);
-		} catch (SQLException e) { // TODO Auto-generated catch block
+			con = DriverManager.getConnection(url, username, password);			
+		} 
+		
+		catch (SQLException e)
+		
+		{
 			e.printStackTrace();
 		}
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery("select * from employee");
-
-		String sql = "insert into employee values(?,?,?)";
-		System.out.println("Querry : " + sql);
-
+		
 		while (rs.next()) {
 
 			String id = rs.getString(1);
